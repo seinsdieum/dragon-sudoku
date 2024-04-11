@@ -1,0 +1,13 @@
+.grid {
+    aspect-ratio: 1;
+    background: var(--second-color);
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 400px;
+    position: relative;
+    font-weight: 600;
+}
+.grid * {
+    box-sizing: border-box;
+}

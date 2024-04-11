@@ -1,0 +1,17 @@
+.view {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-main);
+    padding: var(--padding-main);
+    border-radius: var(--radius);
+}
+
+.view:focus {
+    outline: none;
+}
+
+.menu {
+    display: flex;
+    gap: var(--padding-main);
+    justify-content: center;
+}

@@ -1,0 +1,86 @@
+:root {
+
+  --r: 18;
+  --g: 26;
+  --b: 18;
+
+  --lr: calc(var(--r)*12);
+  --lg: calc(var(--g)*12);
+  --lb: calc(var(--b)*12);
+
+  --back-color:rgb(var(--r),var(--g),var(--b));
+  --second-color:rgb(calc(var(--r)*2),calc(var(--g)*2),calc(var(--b)*2));
+  --third-color:rgb(calc(var(--r)*1.5),calc(var(--g)*1.5),calc(var(--b)*1.5));
+  --fore-color:rgb(var(--lr),var(--lg),var(--lb));
+
+  --padding-inner: 10px;
+  --padding-main: calc(var(--padding-inner)*2);
+
+  --radius: 25px;
+
+  --size-1: 18px;
+  --size-2: 24px;
+  --size-3: 36px;
+
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--fore-color);
+  background-color: var(--back-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: var(--size-3);
+  line-height: 1.1;
+}
+h2 {
+  font-size: var(--size-2);
+  line-height: 1.1;
+}
+
+button {
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  padding: var(--padding-inner) var(--padding-main);
+  font-size: var(--size-1);
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--third-color);
+  cursor: pointer;
+  transition: border-color 0.1s;
+  color: var(--fore-color);
+}
+button:not(:disabled):hover {
+  border-color: rgba(var(--lr),var(--lg),var(--lb),0.3);
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+
