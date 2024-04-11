@@ -1,4 +1,3 @@
-import {b} from "vite/dist/node/types.d-aGj9QkWt";
 
 export type Pos = {
     row: number,
@@ -27,7 +26,7 @@ export type StateType = {
 
 export type GameAction = {
     type: string,
-    payload: any
+    payload: void
 }
 
 

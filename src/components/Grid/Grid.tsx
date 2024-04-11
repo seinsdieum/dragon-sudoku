@@ -2,7 +2,7 @@ import style from './Grid.module.css'
 import Cell from "../Cell/Cell";
 import {ArrayType, Pos} from "../../types";
 import {checkColumn, checkRow, checkSquare} from "../../utils";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 
 type GridProps = {
@@ -32,7 +32,7 @@ const Grid = (props: GridProps) => {
     }
 
     function checkProps(i: number, j: number): boolean {
-        let bb: boolean = checkRow(i, j, props.field) && checkColumn(i, j, props.field) && checkSquare(i, j, props.field)
+        const bb: boolean = checkRow(i, j, props.field) && checkColumn(i, j, props.field) && checkSquare(i, j, props.field)
         return bb;
     }
 

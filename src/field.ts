@@ -5,14 +5,14 @@ const defaultState: { rand: number; matrix: ArrayType } = {
     rand: Math.random()
 }
 
-export type IndexCellType = {
+export interface IndexCellType {
     i: number
     j: number
     value: number
 
 }
 
-export type ActionType = {
+export interface ActionType {
     type: string,
     payload: ArrayType | IndexCellType | -1
 }
@@ -20,30 +20,36 @@ export type ActionType = {
 export const fieldReducer = (state = defaultState, action: ActionType) => {
     switch(action.type) {
         case 'ADD_CELL':
-            if(action.payload.i) state.matrix[action.payload.i][action.payload.j].value === action.payload.value
-            return {...state,
-                matrix: state.matrix.map((r, i) => {
-                    return r.map((c, j) => {
-                        if(i === action.payload.i && j === action.payload.j) return {valid: false, value: action.payload.value}
-                        else return c
-                    })
-                })
-            };
+            if('i' in action.payload ) {
+                state.matrix[action.payload.i][action.payload.j].value === action.payload.value
+                    return {...state,
+                        matrix: state.matrix.map((r, i) => {
+                            return r.map((c, j) => {
+                                if(('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: action.payload.value}
+                                else return c
+                            })
+                        })
+                    };
+            }
+            else return state;
         case 'REMOVE_CELL':
-            if(action.payload.i) state.matrix[action.payload.i][action.payload.j].value === 0
-            return {...state,
-                matrix: state.matrix.map((r, i) => {
-                    return r.map((c, j) => {
-                        if(i === action.payload.i && j === action.payload.j) return {valid: false, value: 0}
-                        else return c
+            if(('i' in action.payload)) {
+                state.matrix[action.payload.i][action.payload.j].value === 0
+                return {...state,
+                    matrix: state.matrix.map((r, i) => {
+                        return r.map((c, j) => {
+                            if(('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: 0}
+                            else return c
+                        })
                     })
-                })
-            };
+                };
+            }
+            else return state;
         case 'GENERATE_FIELD':
             return {...state,
                 matrix: [...createField(9)]}
         case 'CHANGE_FIELD':
-            if(action.payload.length) return action.payload;
+            if('length' in action.payload) return action.payload;
             return state
         default: return state;
     }

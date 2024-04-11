@@ -8,8 +8,8 @@ import {generateHint} from "../../utils";
 const Game = () => {
 
     const [pos, setPos]: Pos = useState({row: 0, column: 0})
-    const [check, setCheck]: boolean = useState(true)
-    const [help, setHelp]: boolean = useState(true)
+    const [check]: boolean = useState(true)
+    const [help]: boolean = useState(true)
 
 
     const field = useSelector(s => s.field.matrix, {
