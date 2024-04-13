@@ -57,7 +57,7 @@ const Grid = (props: GridProps) => {
                             props.onCellPress?.({row: index, column: j})
                         }
                         }
-                        valid={props.check ? checkProps(index, j) : true}
+                        valid={!props.check ? checkProps(index, j) : true}
                         key={`r${index}c${j}`}
                         pos={props.pos}
                         crossInvalid={ props.check ? checkCrossInvalid(index,j) : false}
