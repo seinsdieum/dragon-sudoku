@@ -3,18 +3,18 @@ import {CellType, Pos} from "../../types";
 
 
 type PropsType = {
-    index: number
+    index?: number
     cell: CellType
 
-    pos: Pos
-    coord: {i: number, j: number}
-    valid: boolean
-    highlighted: boolean
+    pos?: Pos
+    coord?: {i: number, j: number}
+    valid?: boolean
+    highlighted?: boolean
     current: boolean
     userPos?: Pos
     onClick?():void
     focused?: boolean
-    crossInvalid: boolean
+    crossInvalid?: boolean
 }
 
 const Cell = (props: PropsType) => {

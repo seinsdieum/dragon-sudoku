@@ -2,22 +2,19 @@ import style from './View.module.css'
 import Grid from "../Grid/Grid";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Pos} from "../../types";
+import {Pos, RootReducerType} from "../../types";
 import {generateHint} from "../../utils";
 
 const Game = () => {
 
-    const [pos, setPos]: Pos = useState({row: 0, column: 0})
-    const [check]: boolean = useState(true)
-    const [help]: boolean = useState(true)
+    const [pos, setPos] = useState<Pos>({row: 0, column: 0})
 
 
-    const field = useSelector(s => s.field.matrix, {
-    })
+    const field = useSelector((s:RootReducerType) => s.field.matrix)
     const dispatch = useDispatch()
 
 
-    const handleMovement = (e) => {
+    const handleMovement = (e:React.KeyboardEvent<HTMLDivElement>) => {
         switch(e.code) {
             case 'ArrowUp': {
                 if(pos.row > 0) setPos({...pos, row: pos.row - 1})
@@ -41,14 +38,14 @@ const Game = () => {
         }
     }
 
-    const handleInput = (e) => {
+    const handleInput = (e: React.KeyboardEvent<HTMLDivElement>) => {
         dispatch({type: 'ADD_CELL', payload: {i: pos.row, j: pos.column, value: +e.key}})
     }
     const handleRemoval = () => {
         dispatch({type: 'REMOVE_CELL', payload: {i: pos.row, j: pos.column, value: 0}})
     }
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
 
         if(e.altKey && e.which == 78) handleFieldUpdate()
         else if(e.altKey && e.which == 72) handleHintInput()
@@ -72,8 +69,8 @@ const Game = () => {
     }
 
     return (
-        <div tabIndex={0} onKeyDown={handleKeyPress} className={style.view}>
-            <Grid help={help} onCellPress={handleCellPress} check={check} field={field} pos={pos} count={3}></Grid>
+        <div tabIndex={0} onKeyDown={(e) => handleKeyPress(e)} className={style.view}>
+            <Grid onCellPress={handleCellPress} field={field} pos={pos} count={3}></Grid>
            <div className={style.menu}>
                <button onClick={handleFieldUpdate}>Новая игра</button>
                <button disabled={field[pos.row][pos.column].value !== 0} onClick={handleHintInput}> Подсказка </button>

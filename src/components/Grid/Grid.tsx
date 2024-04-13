@@ -10,7 +10,7 @@ type GridProps = {
     count: number
     field: ArrayType
     check?: boolean
-    help: boolean
+    help?: boolean
 
     onCellPress?(cell: Pos): void
     onError?(): void
@@ -48,7 +48,8 @@ const Grid = (props: GridProps) => {
     return (
         <div className={style.grid}>
             {props.field.map((c, index) => {
-                return props.field[index].map((c1, j) => {
+                return c.map((c1, j) => {
+
 
 
                     return <Cell
@@ -64,7 +65,7 @@ const Grid = (props: GridProps) => {
                         coord={{i: index, j: j}}
                         highlighted={checkHighlighting(index, j)}
                         current={false}
-                        focused={props.help && props.field[props.pos.row][props.pos.column].value === c1.value && c1.value !== 0}
+                        focused={props.field[props.pos.row][props.pos.column].value === c1.value && c1.value !== 0}
                     ></Cell>
                 })
             })}

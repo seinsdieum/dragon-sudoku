@@ -17,15 +17,15 @@ export interface ActionType {
     payload: ArrayType | IndexCellType | -1
 }
 
-export const fieldReducer = (state = defaultState, action: ActionType) => {
+export const fieldReducer = (state = defaultState, action: ActionType): { rand: number; matrix: ArrayType } => {
     switch(action.type) {
         case 'ADD_CELL':
-            if('i' in action.payload ) {
+            if(typeof action.payload !== 'number' && 'i' in action.payload ) {
                 state.matrix[action.payload.i][action.payload.j].value === action.payload.value
                     return {...state,
                         matrix: state.matrix.map((r, i) => {
                             return r.map((c, j) => {
-                                if(('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: action.payload.value}
+                                if(typeof action.payload !== 'number' && ('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: action.payload.value}
                                 else return c
                             })
                         })
@@ -33,12 +33,12 @@ export const fieldReducer = (state = defaultState, action: ActionType) => {
             }
             else return state;
         case 'REMOVE_CELL':
-            if(('i' in action.payload)) {
+            if(typeof action.payload !== 'number' && ('i' in action.payload)) {
                 state.matrix[action.payload.i][action.payload.j].value === 0
                 return {...state,
                     matrix: state.matrix.map((r, i) => {
                         return r.map((c, j) => {
-                            if(('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: 0}
+                            if(typeof action.payload !== 'number' && ('i' in action.payload) && i === action.payload.i && j === action.payload.j) return {valid: false, value: 0}
                             else return c
                         })
                     })
@@ -49,7 +49,7 @@ export const fieldReducer = (state = defaultState, action: ActionType) => {
             return {...state,
                 matrix: [...createField(9)]}
         case 'CHANGE_FIELD':
-            if('length' in action.payload) return action.payload;
+            if(typeof action.payload !== 'number' && 'length' in action.payload) return {...state, matrix: action.payload};
             return state
         default: return state;
     }

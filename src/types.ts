@@ -1,4 +1,3 @@
-
 export type Pos = {
     row: number,
     column: number,
@@ -31,3 +30,13 @@ export type GameAction = {
 
 
 export type ArrayType = Array<Array<CellType>>
+
+
+export type FieldType = {
+    rand: number,
+    matrix: ArrayType
+}
+
+export type RootReducerType = {
+    field: FieldType
+}
